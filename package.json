@@ -4,7 +4,7 @@
 		"name": "Georgi Spasov"
 	},
 	"description": "Svelte component for displaying tooltips",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
