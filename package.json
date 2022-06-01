@@ -1,5 +1,5 @@
 {
-	"name": "svelte-tooltip",
+	"name": "svelte-tooltip-simple",
 	"author": {
 		"name": "Georgi Spasov"
 	},
@@ -51,6 +51,7 @@
 	"keywords": [
 		"tooltip",
 		"svelte",
-		"svelte-tooltip"
+		"svelte-tooltip",
+		"svelte-tooltip-simple"
 	]
 }

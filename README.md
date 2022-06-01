@@ -1,8 +1,8 @@
-## svelte-tooltip
+## svelte-tooltip-simple
 
-[![npm version](http://img.shields.io/npm/v/svelte-tooltip.svg)](https://www.npmjs.com/package/svelte-tooltip)
-[![npm downloads](https://img.shields.io/npm/dm/svelte-tooltip.svg)](https://www.npmjs.com/package/svelte-tooltip)
-![license](https://img.shields.io/npm/l/svelte-tooltip)
+[![npm version](http://img.shields.io/npm/v/svelte-tooltip-simple.svg)](https://www.npmjs.com/package/svelte-tooltip-simple)
+[![npm downloads](https://img.shields.io/npm/dm/svelte-tooltip-simple.svg)](https://www.npmjs.com/package/svelte-tooltip-simple)
+![license](https://img.shields.io/npm/l/svelte-tooltip-simple)
 
 A simple Svelte component for displaying tooltips.
 
@@ -24,7 +24,7 @@ yarn add svelte-pdf-simple
 
 ```svelte
 <script lang="ts">
-  import { Tooltip } from "svelte-tooltip";
+  import { Tooltip } from "svelte-tooltip-simple";
 </script>
 
 
