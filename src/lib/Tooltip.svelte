@@ -11,9 +11,9 @@
   import { scale } from "svelte/transition";
   import { placementToSide, placementToOppositeSide } from "./utils";
 
-  export let text: string = "";
+  export let text = "";
   export let placement: Placement = "top";
-  export let maxWidth: number = 200;
+  export let maxWidth = 200;
   export let theme: "dark" | "light" = "light";
   export let hoist = false;
   export let arrowOffset = 8;
