@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test("index page has a Tooltip component which will show tooltip when target is hovered", async ({
-  page
+  page,
 }) => {
   await page.goto("/");
   const box = await page.locator("div[class^='target']").boundingBox();

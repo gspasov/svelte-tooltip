@@ -11,16 +11,16 @@ const config = {
   kit: {
     adapter: adapter(),
     package: {
-      exports: (file) => file === "index.ts"
+      exports: (file) => file === "index.ts",
     },
     vite: {
       resolve: {
         alias: {
-          "svelte-tooltip": path.resolve("src/lib")
-        }
-      }
-    }
-  }
+          "svelte-tooltip": path.resolve("src/lib"),
+        },
+      },
+    },
+  },
 };
 
 export default config;

@@ -27,7 +27,6 @@ yarn add svelte-pdf-simple
   import { Tooltip } from "svelte-tooltip-simple";
 </script>
 
-
 <Tooltip text="my tooltip text">
   <button>Click</button>
 </Tooltip>
