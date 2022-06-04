@@ -50,7 +50,7 @@
   </div>
 
   <div>
-    <Tooltip maxWidth={3000} placement="left">
+    <Tooltip maxWidth={300} placement="left">
       <button>max width is too big</button>
       <svelte:fragment slot="content">
         <b>Lorem <i>ipsum dolor sit amet</i>, consectetur adipiscing elit, sed do eiusmod</b>
