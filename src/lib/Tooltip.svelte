@@ -19,11 +19,11 @@
   export let hoist = false;
   export let arrowOffset = 8;
   export let fontSize = 0.875;
-  export let borderRadius = 0.2;
+  export let borderRadius = 0.25;
   export let padding: Record<Side, number> = {
-    ...fillSideRecord(0.3),
-    left: 0.75,
-    right: 0.75,
+    ...fillSideRecord(0.25),
+    left: 0.5,
+    right: 0.5,
   };
 
   let targetElement: HTMLDivElement;
@@ -129,6 +129,11 @@
     --tooltip-light-background: #27272a;
     --tooltip-dark-text: #333;
     --tooltip-dark-background: #ddd;
+    --tooltip-line-height: 1.4;
+    --tooltip-font-weight: 400;
+    --tooltip-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+      sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --tooltip-z-index: 9999;
   }
 
   .target {
@@ -137,10 +142,12 @@
 
   .tooltip {
     pointer-events: none;
-    font-family: sans-serif;
+    line-height: var(--tooltip-font-family);
+    font-weight: var(--tooltip-font-family);
+    font-family: var(--tooltip-font-family);
     top: 0px;
     left: 0px;
-    z-index: 100;
+    z-index: var(--tooltip-z-index);
   }
 
   .dark {
