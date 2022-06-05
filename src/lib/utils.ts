@@ -1,5 +1,26 @@
 import type { Placement, Side } from "@floating-ui/dom";
 
+export type Theme = "light" | "dark";
+
+export function remToPx(rem: number): number {
+  return rem / 0.0625;
+}
+
+export function oppositeSide(side: Side): Side {
+  switch (side) {
+    case "top":
+      return "bottom";
+    case "right":
+      return "left";
+    case "left":
+      return "right";
+    case "bottom":
+      return "top";
+    default:
+      assertUnreachable(side);
+  }
+}
+
 export function placementToSide(placement: Placement): Side {
   switch (placement) {
     case "top":
@@ -26,37 +47,6 @@ export function placementToSide(placement: Placement): Side {
       return "bottom";
     case "bottom-end":
       return "bottom";
-    default:
-      assertUnreachable(placement);
-  }
-}
-
-export function placementToOppositeSide(placement: Placement): Side {
-  switch (placement) {
-    case "top":
-      return "bottom";
-    case "top-start":
-      return "bottom";
-    case "top-end":
-      return "bottom";
-    case "right":
-      return "left";
-    case "right-start":
-      return "left";
-    case "right-end":
-      return "left";
-    case "left":
-      return "right";
-    case "left-start":
-      return "right";
-    case "left-end":
-      return "right";
-    case "bottom":
-      return "top";
-    case "bottom-start":
-      return "top";
-    case "bottom-end":
-      return "top";
     default:
       assertUnreachable(placement);
   }

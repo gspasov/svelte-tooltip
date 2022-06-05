@@ -50,14 +50,16 @@
   </div>
 
   <div>
-    <Tooltip maxWidth={300} placement="left">
+    <Tooltip maxWidth={20} placement="left">
       <button>max width is too big</button>
       <svelte:fragment slot="content">
-        <b>Lorem <i>ipsum dolor sit amet</i>, consectetur adipiscing elit, sed do eiusmod</b>
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-        in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <span style="font-size: 18px; padding: 30px; color: yellow">
+          <b>Lorem <i>ipsum dolor sit amet</i>, consectetur adipiscing elit, sed do eiusmod</b>
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+          in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+          non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </span>
       </svelte:fragment>
     </Tooltip>
   </div>

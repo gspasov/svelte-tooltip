@@ -9,15 +9,22 @@
     type Side,
   } from "@floating-ui/dom";
   import { scale } from "svelte/transition";
-  import { placementToSide, placementToOppositeSide } from "./utils";
+  import { placementToSide, type Theme, oppositeSide } from "./utils";
 
   export let text = "";
   export let placement: Placement = "top";
-  export let maxWidth = 200;
-  export let theme: "dark" | "light" = "light";
+  export let fallbackPlacements: Placement[] | undefined = undefined;
+  export let maxWidth: number | undefined = undefined;
+  export let theme: Theme = "light";
   export let hoist = false;
   export let arrowOffset = 8;
-  export let tooltipMargin = 10;
+  export let fontSize = 0.875;
+  export let borderRadius = 0.2;
+  export let padding: Record<Side, number> = {
+    ...fillSideRecord(0.3),
+    left: 0.75,
+    right: 0.75,
+  };
 
   let targetElement: HTMLDivElement;
   let tooltipElement: HTMLDivElement;
@@ -27,9 +34,7 @@
   let tooltipTop = 0;
   let arrowLeftPx = "";
   let arrowTopPx = "";
-  let arrowPosition = emptySideRecord("");
-  let marginLeft = 0;
-  let marginRight = 0;
+  let arrowPosition = fillSideRecord("");
 
   $: if (tooltipElement && arrowElement) {
     updateTooltipPosition();
@@ -38,25 +43,29 @@
   function updateTooltipPosition(): void {
     computePosition(targetElement, tooltipElement, {
       placement,
-      middleware: [offset(arrowOffset), flip(), shift(), arrow({ element: arrowElement })],
+      middleware: [
+        offset(arrowOffset),
+        flip({ fallbackPlacements }),
+        shift({ padding: 5 }),
+        arrow({ element: arrowElement }),
+      ],
       strategy: hoist ? "fixed" : "absolute",
     }).then(({ x, y, placement, middlewareData }) => {
       tooltipLeft = x;
       tooltipTop = y;
 
-      marginLeft = placementToSide(placement) === "right" ? 0 : tooltipMargin;
-      marginRight = placementToSide(placement) === "left" ? 0 : tooltipMargin;
-
       let arrowX = middlewareData.arrow?.x;
       let arrowY = middlewareData.arrow?.y;
-      arrowLeftPx = arrowX != null ? `${arrowX - marginLeft}px` : "";
+
+      arrowLeftPx = arrowX != null ? `${arrowX}px` : "";
       arrowTopPx = arrowY != null ? `${arrowY}px` : "";
 
-      arrowPosition = { ...emptySideRecord(""), [placementToOppositeSide(placement)]: "-4px" };
+      const arrowPlacement = oppositeSide(placementToSide(placement));
+      arrowPosition = { ...fillSideRecord(""), [arrowPlacement]: "-4px" };
     });
   }
 
-  function emptySideRecord<T>(empty: T): Record<Side, T> {
+  function fillSideRecord<T>(empty: T): Record<Side, T> {
     return { top: empty, left: empty, right: empty, bottom: empty };
   }
 
@@ -80,6 +89,7 @@
 >
   <slot />
 </div>
+
 {#if visible}
   <div
     class="tooltip"
@@ -88,10 +98,14 @@
     role="tooltip"
     style:left="{tooltipLeft}px"
     style:top="{tooltipTop}px"
-    style:max-width="{maxWidth}px"
+    style:max-width={maxWidth !== undefined ? `${maxWidth}rem` : ""}
     style:position={hoist ? "fixed" : "absolute"}
-    style:margin-left="{marginLeft}px"
-    style:margin-right="{marginRight}px"
+    style:font-size="{fontSize}rem"
+    style:border-radius="{borderRadius}rem"
+    style:padding-top="{padding.top}rem"
+    style:padding-bottom="{padding.bottom}rem"
+    style:padding-left="{padding.left}rem"
+    style:padding-right="{padding.right}rem"
     bind:this={tooltipElement}
     transition:scale={{ duration: 250 }}
   >
@@ -122,9 +136,6 @@
   }
 
   .tooltip {
-    font-size: 0.875rem;
-    padding: 5px 10px;
-    border-radius: 0.2rem;
     pointer-events: none;
     font-family: sans-serif;
     top: 0px;
